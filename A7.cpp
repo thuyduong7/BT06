@@ -1,21 +1,22 @@
 #include <iostream>
 using namespace std;
 int check[100];
-void print(string s)
+void print(string p)
 {
-    for (int i = 0; i < s.length(); i++) cout << s[i];
+    for (int i = 0; i < p.length(); i++) cout << p[i];
     cout << endl;
 }
 
-void permulation (int i, string s, string p, int n)
+void permulation (string s, string p, int i)
 {
+    int n = s.length();
     for (int j = 0; j < n; j++)
         if (!check[j])
         {
             p[i] = s[j];
             check[j] = 1;
             if (i == n-1) print(p);
-            else permulation(i+1,s,p,n);
+            else permulation(s,p,i+1);
             check[j] = 0;
         }
 }
@@ -25,7 +26,7 @@ int main()
     string s,p;
     cin >> s;
     p = s;
-    int n = s.length();
-    permulation(0,s,p,n);
+    permulation(s,p,0);
     return 0;
 }
+
